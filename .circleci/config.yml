@@ -43,8 +43,9 @@ jobs:
             rustup run nightly cargo --version --verbose
             rustup run nightly cargo build
       - run:
-          name: Test
-          command: rustup run nightly cargo test
+          name: Generate Page
+          command: |
+            rustup run nightly cargo run
       - run:
           name: Upload rendered page
           command: ./deploy.sh build
