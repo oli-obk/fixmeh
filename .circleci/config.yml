@@ -7,7 +7,7 @@ jobs:
       # your own using the Dockerfile provided below
       # and replace here. I put my own image here for
       # the example.
-      - image: abronan/rust-circleci:latest
+      - image: rust:latest
 
     steps:
       - checkout
