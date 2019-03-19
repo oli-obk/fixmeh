@@ -1,5 +1,4 @@
 
-executable file 56 lines (44 sloc) 1.44 KB
 #!/bin/sh
 # ideas used from https://gist.github.com/motemen/8595451
 
