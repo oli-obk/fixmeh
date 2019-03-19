@@ -30,7 +30,7 @@ jobs:
           command: rustup run nightly cargo test
       - run:
           name: Upload rendered page
-          command: ./deploy.sh
+          command: ./deploy.sh build
       - save_cache:
           key: project-cache
           paths:
