@@ -1,15 +1,40 @@
-general:
-  branches:
-    ignore:
-      - gh-pages
+version: 2
 
-test:
-  override:
-    - exit 0
+jobs:
+  build:
+    docker:
+      # The image used to build our project, build
+      # your own using the Dockerfile provided below
+      # and replace here. I put my own image here for
+      # the example.
+      - image: abronan/rust-circleci:latest
 
-deployment:
-  staging:
-    branch: master
-    commands:
-      - ./build.sh
-      - ./deploy.sh build
+    steps:
+      - checkout
+      - restore_cache:
+          key: project-cache
+      - run:
+          name: Check formatting
+          command: |
+            rustfmt --version
+            cargo fmt -- --write-mode=diff
+      - run:
+          name: Grep FIXME from rustc repo
+          command: ./build.sh
+      - run:
+          name: Nightly Build
+          command: |
+            rustup run nightly rustc --version --verbose
+            rustup run nightly cargo --version --verbose
+            rustup run nightly cargo build
+      - run:
+          name: Test
+          command: rustup run nightly cargo test
+      - run:
+          name: Upload rendered page
+          command: ./deploy.sh
+      - save_cache:
+          key: project-cache
+          paths:
+            - "~/.cargo"
+            - "./target"

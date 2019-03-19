@@ -10,4 +10,3 @@ grep FIXME **/*.rs -n > ../fixmes.txt
 
 cd ..
 
-cargo run
