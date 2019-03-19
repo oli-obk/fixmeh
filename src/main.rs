@@ -1,9 +1,9 @@
-#![recursion_limit="1024"]
+#![recursion_limit = "1024"]
 
+use std::collections::HashMap;
+use std::io::Write;
 use typed_html::dom::DOMTree;
 use typed_html::{html, text};
-use std::io::Write;
-use std::collections::HashMap;
 
 fn main() -> std::io::Result<()> {
     let mut dedup: HashMap<_, Vec<_>> = HashMap::new();
@@ -15,7 +15,10 @@ fn main() -> std::io::Result<()> {
         let line = line.next().unwrap();
         let text = line.splitn(2, "FIXME").nth(1).unwrap();
         let text = text.trim().trim_start_matches(':').trim();
-        dedup.entry(text).or_default().push((filename, line_num, line));
+        dedup
+            .entry(text)
+            .or_default()
+            .push((filename, line_num, line));
     }
     let mut lines: Vec<_> = dedup.into_iter().collect();
     lines.sort_by_key(|(text, _)| *text);
