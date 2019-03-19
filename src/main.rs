@@ -80,6 +80,11 @@ fn main() -> std::io::Result<()> {
                                         .trim()
                                         .trim_start_matches('.')
                                         .trim();
+                                    let text = if text.is_empty() {
+                                        format!("{}:{}", file, line)
+                                    } else {
+                                        text.to_string()
+                                    };
                                     text!("{}", text)
                                 }<br/>
                                 </a>
