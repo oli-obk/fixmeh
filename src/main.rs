@@ -63,23 +63,9 @@ fn main() -> std::io::Result<()> {
                                 <a href={ format!("https://github.com/rust-lang/rust/blob/master/{}#L{}", file, line) }>
                                 {
                                     let text = text
-                                        .trim()
-                                        .trim_start_matches('/')
-                                        .trim()
-                                        .trim_start_matches('*')
-                                        .trim()
-                                        .trim_start_matches('(')
-                                        .trim()
+                                        .trim_start_matches(&['/', '*', '(', ' '])
                                         .trim_start_matches("FIXME")
-                                        .trim()
-                                        .trim_start_matches('^')
-                                        .trim()
-                                        .trim_start_matches(':')
-                                        .trim()
-                                        .trim_start_matches('-')
-                                        .trim()
-                                        .trim_start_matches('.')
-                                        .trim();
+                                        .trim_start_matches(&['^', ':', '-', '.', ' ']);
                                     let text = if text.is_empty() {
                                         format!("{}:{}", file, line)
                                     } else {
