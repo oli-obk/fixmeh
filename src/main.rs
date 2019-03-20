@@ -58,7 +58,7 @@ fn main() -> std::io::Result<()> {
             </head>
             <body>
                 <table>
-                <tr><th>"Description"</th><th>"Issue"</th><th>"Full text and link to file"</th></tr>
+                <tr><th>"Description"</th><th>"Issue"</th><th>"Source"</th></tr>
                 { lines.iter().map(|(text, entries)| {
                     let mut parser = rfind_url::Parser::new();
                     let url = text.chars().rev().enumerate().filter_map(|(i, c)| parser.advance(c).map(|n| (i, n))).next();
@@ -78,30 +78,27 @@ fn main() -> std::io::Result<()> {
                             {
                                 let mut urls = Vec::new();
                                 if let Some(url) = url {
-                                    urls.push(html!(<a href={url.to_string()}>{ text!("{}", url) }</a>));
+                                    urls.push(html!(<span><a href={url.to_string()}>{ text!(url.trim_start_matches("https://").trim_start_matches("github.com/")) }</a><br/></span>));
                                 }
                                 for found in issue_regex.find_iter(&text) {
                                     let found = found.as_str();
-                                    urls.push(html!(<a href= { format!("https://github.com/rust-lang/rust/issues/{}", found)}>{ text!(found) }</a>));
+                                    urls.push(html!(<span><a href= { format!("https://github.com/rust-lang/rust/issues/{}", found)}>{ text!(found) }</a><br/></span>));
                                 }
                                 if urls.is_empty() {
-                                    urls.push(html!(<a href="">"no issue link"</a>));
+                                    urls.push(html!(<span>"no issue link"</span>));
                                 }
-                                urls.into_iter().map(|url| html!(
-                                    <span>{url}<br/></span>
-                                ))
+                                urls
                             }
                         </td>
                         <td>
                             { entries.iter().map(|(file, line)| html!(
                                 <a href={ format!("https://github.com/rust-lang/rust/blob/master/{}#L{}", file.display(), line) }>
                                 {
-                                    let text = if text.is_empty() {
-                                        format!("{}:{}", file.display(), line)
-                                    } else {
-                                        text.to_string()
-                                    };
-                                    text!("{}", text)
+                                    let mut file: PathBuf = file.iter().skip(1).collect();
+                                    file.set_extension("");
+                                    let file = file.display().to_string();
+                                    let file = file.trim_start_matches("lib");
+                                    text!("{}", file)
                                 }<br/>
                                 </a>
                             ))}
