@@ -10,7 +10,7 @@ use typed_html::{html, text};
 
 fn main() -> std::io::Result<()> {
     const TRIM_TOKENS: &[char] = &['#', '/', '*', '(', ')', ' ', ':', '-', '.', '^', ','];
-    let mut dedup: HashMap<_, Vec<_>> = HashMap::new();
+    let mut dedup: HashMap<_, (Vec<_>, String)> = HashMap::new();
     let re = regex::Regex::new(r"[^\n]*(FIXME|HACK)[^\n]*").unwrap();
     for file in glob::glob("rust/**/*.rs").expect("glob pattern failed") {
         let filename = file.unwrap();
@@ -40,8 +40,8 @@ fn main() -> std::io::Result<()> {
             let filename: PathBuf = filename.iter().skip(1).collect();
             dedup
                 .entry(line)
-                .or_default()
-                .push((filename.clone(), line_num));
+                .or_insert_with(|| (Vec::new(), cap.as_str().to_owned()))
+                .0.push((filename.clone(), line_num));
         }
     }
     let mut lines: Vec<_> = dedup.into_iter().collect();
@@ -49,6 +49,7 @@ fn main() -> std::io::Result<()> {
     // sorry, ignoring single and double digit issues
     // We can't depend on a starting `#` either, because some people just use `FIXME 1232`
     let issue_regex = regex::Regex::new(r"[1-9][0-9]{2,}").unwrap();
+    let user_regex = regex::Regex::new(r"\(([^\)])+\)").unwrap();
     let doc: DOMTree<String> = html!(
         <html>
             <head>
@@ -61,8 +62,8 @@ fn main() -> std::io::Result<()> {
             </head>
             <body>
                 <table>
-                <tr><th>"Description"</th><th>"Issue"</th><th>"Source"</th></tr>
-                { lines.iter().map(|(text, entries)| {
+                <tr><th>"Description"</th><th>"User/Topic"</th><th>"Issue"</th><th>"Source"</th></tr>
+                { lines.iter().map(|(text, (entries, raw))| {
                     let mut parser = rfind_url::Parser::new();
                     let url = text.chars().rev().enumerate().filter_map(|(i, c)| parser.advance(c).map(|n| (i, n))).next();
                     let (text, url) = match url {
@@ -81,12 +82,14 @@ fn main() -> std::io::Result<()> {
                         .replace("issue", "")
                         .replace("Issue", "");
                     let clean_text = clean_text
-                        .trim_start_matches(TRIM_TOKENS)
-                        .trim_end_matches(TRIM_TOKENS);
+                        .trim_matches(TRIM_TOKENS);
                     html!(
                         <tr>
                         <td>
                             { text!(clean_text) }
+                        </td>
+                        <td>
+                            { user_regex.find_iter(&raw).map(|user| html!(<span>{ text!(user.as_str().trim_matches(TRIM_TOKENS)) }<br/></span>)) }
                         </td>
                         <td>
                             {
