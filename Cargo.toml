@@ -5,6 +5,6 @@ name = "fixmeh"
 version = "0.1.0"
 [dependencies]
 glob = "*"
+linkify = "*"
 regex = "*"
-rfind_url = "*"
 typed-html = "0.2.0"
