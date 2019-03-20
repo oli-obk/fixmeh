@@ -9,6 +9,7 @@ use typed_html::dom::DOMTree;
 use typed_html::{html, text};
 
 fn main() -> std::io::Result<()> {
+    const TRIM_TOKENS: &[char] = &['#', '/', '*', '(', ')', ' ', ':', '-', '.', '^', ','];
     let mut dedup: HashMap<_, Vec<_>> = HashMap::new();
     let re = regex::Regex::new(r"[^\n]*(FIXME|HACK)[^\n]*").unwrap();
     for file in glob::glob("rust/**/*.rs").expect("glob pattern failed") {
@@ -30,10 +31,10 @@ fn main() -> std::io::Result<()> {
 
             let line = cap
                 .as_str()
-                .trim_start_matches(&['/', '*', '(', ' '] as &[_])
+                .trim_start_matches(TRIM_TOKENS)
                 .trim_start_matches("FIXME")
                 .trim_start_matches("HACK")
-                .trim_start_matches(&['^', ':', '-', '.', ' '] as &[_])
+                .trim_start_matches(TRIM_TOKENS)
                 .to_owned();
             // trim the leading `rust` part from the path
             let filename: PathBuf = filename.iter().skip(1).collect();
@@ -45,7 +46,9 @@ fn main() -> std::io::Result<()> {
     }
     let mut lines: Vec<_> = dedup.into_iter().collect();
     lines.sort_by(|(a, _), (b, _)| a.cmp(b));
-    let issue_regex = regex::Regex::new(r"#[0-9]+").unwrap();
+    // sorry, ignoring single and double digit issues
+    // We can't depend on a starting `#` either, because some people just use `FIXME 1232`
+    let issue_regex = regex::Regex::new(r"[1-9][0-9]{2,}").unwrap();
     let doc: DOMTree<String> = html!(
         <html>
             <head>
@@ -69,10 +72,21 @@ fn main() -> std::io::Result<()> {
                         ),
                         None => (text.to_string(), None),
                     };
+                    let clean_text = issue_regex.replace_all(&text, "");
+                    let clean_text = clean_text
+                        .replace("FIXME", "")
+                        .replace("HACK", "")
+                        .replace("issues", "")
+                        .replace("Issues", "")
+                        .replace("issue", "")
+                        .replace("Issue", "");
+                    let clean_text = clean_text
+                        .trim_start_matches(TRIM_TOKENS)
+                        .trim_end_matches(TRIM_TOKENS);
                     html!(
                         <tr>
                         <td>
-                            { text!(text.clone()) }
+                            { text!(clean_text) }
                         </td>
                         <td>
                             {
@@ -83,9 +97,6 @@ fn main() -> std::io::Result<()> {
                                 for found in issue_regex.find_iter(&text) {
                                     let found = found.as_str();
                                     urls.push(html!(<span><a href= { format!("https://github.com/rust-lang/rust/issues/{}", found)}>{ text!(found) }</a><br/></span>));
-                                }
-                                if urls.is_empty() {
-                                    urls.push(html!(<span>"no issue link"</span>));
                                 }
                                 urls
                             }
