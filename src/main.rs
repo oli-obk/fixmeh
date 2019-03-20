@@ -17,14 +17,13 @@ fn main() -> std::io::Result<()> {
         std::fs::File::open(&filename).unwrap().read_to_string(&mut text).unwrap();
         for cap in re.find_iter(&text) {
             let line_num = text.lines().enumerate().find(|(_, s)| s.as_ptr().wrapping_offset_from(text.as_ptr()) > cap.start() as isize).unwrap().0;
-            let line = cap.as_str().to_owned();
-            let text = line.trim().trim_start_matches(':').trim().to_owned();
+            let line = cap.as_str().trim().to_owned();
             // trim the leading `rust` part from the path
             let filename: PathBuf = filename.iter().skip(1).collect();
             dedup
-                .entry(text)
+                .entry(line)
                 .or_default()
-                .push((filename.clone(), line_num, line));
+                .push((filename.clone(), line_num));
         }
     }
     let mut lines: Vec<_> = dedup.into_iter().collect();
@@ -66,7 +65,7 @@ fn main() -> std::io::Result<()> {
                             }
                         </td>
                         <td>
-                            { entries.iter().map(|(file, line, text)| html!(
+                            { entries.iter().map(|(file, line)| html!(
                                 <a href={ format!("https://github.com/rust-lang/rust/blob/master/{}#L{}", file.display(), line) }>
                                 {
                                     let text = text
