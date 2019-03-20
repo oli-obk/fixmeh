@@ -27,7 +27,14 @@ fn main() -> std::io::Result<()> {
                 })
                 .unwrap()
                 .0;
-            let line = cap.as_str().trim().to_owned();
+
+            let line = cap
+                .as_str()
+                .trim_start_matches(&['/', '*', '(', ' '] as &[_])
+                .trim_start_matches("FIXME")
+                .trim_start_matches("HACK")
+                .trim_start_matches(&['^', ':', '-', '.', ' '] as &[_])
+                .to_owned();
             // trim the leading `rust` part from the path
             let filename: PathBuf = filename.iter().skip(1).collect();
             dedup
@@ -43,6 +50,11 @@ fn main() -> std::io::Result<()> {
         <html>
             <head>
                 <title>"FIXMEs in the rustc source"</title>
+                <style>
+                "table, th, td {
+                    border: 1px solid black;
+                }"
+                </style>
             </head>
             <body>
                 <table>
@@ -64,24 +76,26 @@ fn main() -> std::io::Result<()> {
                         </td>
                         <td>
                             {
+                                let mut urls = Vec::new();
                                 if let Some(url) = url {
-                                    html!(<a href={url.to_string()}>{ text!("{}", url) }</a>)
-                                } else if let Some(found) = issue_regex.find(&text) {
-                                    let found = found.as_str();
-                                    html!(<a href= { format!("https://github.com/rust-lang/rust/issues/{}", found)}>{ text!(found) }</a>)
-                                } else {
-                                    html!(<a href="">"no issue link"</a>)
+                                    urls.push(html!(<a href={url.to_string()}>{ text!("{}", url) }</a>));
                                 }
+                                for found in issue_regex.find_iter(&text) {
+                                    let found = found.as_str();
+                                    urls.push(html!(<a href= { format!("https://github.com/rust-lang/rust/issues/{}", found)}>{ text!(found) }</a>));
+                                }
+                                if urls.is_empty() {
+                                    urls.push(html!(<a href="">"no issue link"</a>));
+                                }
+                                urls.into_iter().map(|url| html!(
+                                    <span>{url}<br/></span>
+                                ))
                             }
                         </td>
                         <td>
                             { entries.iter().map(|(file, line)| html!(
                                 <a href={ format!("https://github.com/rust-lang/rust/blob/master/{}#L{}", file.display(), line) }>
                                 {
-                                    let text = text
-                                        .trim_start_matches(&['/', '*', '(', ' '] as &[_])
-                                        .trim_start_matches("FIXME")
-                                        .trim_start_matches(&['^', ':', '-', '.', ' '] as &[_]);
                                     let text = if text.is_empty() {
                                         format!("{}:{}", file.display(), line)
                                     } else {
