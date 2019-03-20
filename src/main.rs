@@ -29,10 +29,7 @@ fn main() -> std::io::Result<()> {
                 .unwrap()
                 .0;
 
-            let line = cap
-                .as_str()
-                .trim_matches(TRIM_TOKENS)
-                .to_owned();
+            let line = cap.as_str().trim_matches(TRIM_TOKENS).to_owned();
             // trim the leading `rust` part from the path
             let filename: PathBuf = filename.iter().skip(1).collect();
             dedup
