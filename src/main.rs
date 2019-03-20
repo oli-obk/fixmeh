@@ -1,5 +1,8 @@
 #![recursion_limit = "1024"]
+#![feature(ptr_wrapping_offset_from)]
 
+use std::path::PathBuf;
+use std::io::Read;
 use std::collections::HashMap;
 use std::io::Write;
 use typed_html::dom::DOMTree;
@@ -7,21 +10,25 @@ use typed_html::{html, text};
 
 fn main() -> std::io::Result<()> {
     let mut dedup: HashMap<_, Vec<_>> = HashMap::new();
-    for line in include_str!("../fixmes.txt").lines() {
-        let mut line = line.splitn(3, ':');
-        let filename = line.next().unwrap();
-        let line_num = line.next().unwrap();
-        // take everything after the `FIXME`
-        let line = line.next().unwrap();
-        let text = line.splitn(2, "FIXME").nth(1).unwrap();
-        let text = text.trim().trim_start_matches(':').trim();
-        dedup
-            .entry(text)
-            .or_default()
-            .push((filename, line_num, line));
+    let re = regex::Regex::new(r"[^\n]*(FIXME|HACK)[^\n]*").unwrap();
+    for file in glob::glob("rust/**/*.rs").expect("glob pattern failed") {
+        let filename = file.unwrap();
+        let mut text = String::new();
+        std::fs::File::open(&filename).unwrap().read_to_string(&mut text).unwrap();
+        for cap in re.find_iter(&text) {
+            let line_num = text.lines().enumerate().find(|(_, s)| s.as_ptr().wrapping_offset_from(text.as_ptr()) > cap.start() as isize).unwrap().0;
+            let line = cap.as_str().to_owned();
+            let text = line.trim().trim_start_matches(':').trim().to_owned();
+            // trim the leading `rust` part from the path
+            let filename: PathBuf = filename.iter().skip(1).collect();
+            dedup
+                .entry(text)
+                .or_default()
+                .push((filename.clone(), line_num, line));
+        }
     }
     let mut lines: Vec<_> = dedup.into_iter().collect();
-    lines.sort_by_key(|(text, _)| *text);
+    lines.sort_by(|(a, _), (b, _)| a.cmp(b));
     let issue_regex = regex::Regex::new(r"#[0-9]+").unwrap();
     let doc: DOMTree<String> = html!(
         <html>
@@ -60,14 +67,14 @@ fn main() -> std::io::Result<()> {
                         </td>
                         <td>
                             { entries.iter().map(|(file, line, text)| html!(
-                                <a href={ format!("https://github.com/rust-lang/rust/blob/master/{}#L{}", file, line) }>
+                                <a href={ format!("https://github.com/rust-lang/rust/blob/master/{}#L{}", file.display(), line) }>
                                 {
                                     let text = text
-                                        .trim_start_matches(&['/', '*', '(', ' '])
+                                        .trim_start_matches(&['/', '*', '(', ' '] as &[_])
                                         .trim_start_matches("FIXME")
-                                        .trim_start_matches(&['^', ':', '-', '.', ' ']);
+                                        .trim_start_matches(&['^', ':', '-', '.', ' '] as &[_]);
                                     let text = if text.is_empty() {
-                                        format!("{}:{}", file, line)
+                                        format!("{}:{}", file.display(), line)
                                     } else {
                                         text.to_string()
                                     };
