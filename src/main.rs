@@ -41,7 +41,8 @@ fn main() -> std::io::Result<()> {
             dedup
                 .entry(line)
                 .or_insert_with(|| (Vec::new(), cap.as_str().to_owned()))
-                .0.push((filename.clone(), line_num));
+                .0
+                .push((filename.clone(), line_num));
         }
     }
     let mut lines: Vec<_> = dedup.into_iter().collect();
