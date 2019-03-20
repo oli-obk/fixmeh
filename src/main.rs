@@ -1,10 +1,10 @@
 #![recursion_limit = "1024"]
 #![feature(ptr_wrapping_offset_from)]
 
-use std::path::PathBuf;
-use std::io::Read;
 use std::collections::HashMap;
+use std::io::Read;
 use std::io::Write;
+use std::path::PathBuf;
 use typed_html::dom::DOMTree;
 use typed_html::{html, text};
 
@@ -14,9 +14,19 @@ fn main() -> std::io::Result<()> {
     for file in glob::glob("rust/**/*.rs").expect("glob pattern failed") {
         let filename = file.unwrap();
         let mut text = String::new();
-        std::fs::File::open(&filename).unwrap().read_to_string(&mut text).unwrap();
+        std::fs::File::open(&filename)
+            .unwrap()
+            .read_to_string(&mut text)
+            .unwrap();
         for cap in re.find_iter(&text) {
-            let line_num = text.lines().enumerate().find(|(_, s)| s.as_ptr().wrapping_offset_from(text.as_ptr()) > cap.start() as isize).unwrap().0;
+            let line_num = text
+                .lines()
+                .enumerate()
+                .find(|(_, s)| {
+                    s.as_ptr().wrapping_offset_from(text.as_ptr()) > cap.start() as isize
+                })
+                .unwrap()
+                .0;
             let line = cap.as_str().trim().to_owned();
             // trim the leading `rust` part from the path
             let filename: PathBuf = filename.iter().skip(1).collect();
