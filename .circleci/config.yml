@@ -45,7 +45,7 @@ jobs:
       - run:
           name: Generate Page
           command: |
-            rustup run nightly cargo run
+            RUST_BACKTRACE=1 rustup run nightly cargo run
       - run:
           name: Upload rendered page
           command: ./deploy.sh build
