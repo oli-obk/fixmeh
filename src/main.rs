@@ -11,7 +11,7 @@ use typed_html::{html, text};
 fn main() -> std::io::Result<()> {
     const TRIM_TOKENS: &[char] = &['/', '*', ' ', ':', '-', '.', '^', ','];
     let mut dedup: HashMap<_, Vec<_>> = HashMap::new();
-    let re = regex::Regex::new(r"[^\n]*(FIXME|HACK)[^\n]*").unwrap();
+    let re = regex::Regex::new(r"[^\\n]*(FIXME|HACK)[^\\n]*").unwrap();
     for file in glob::glob("rust/**/*.rs").expect("glob pattern failed") {
         let filename = file.unwrap();
         let mut text = String::new();
@@ -26,7 +26,7 @@ fn main() -> std::io::Result<()> {
                 .find(|(_, s)| {
                     s.as_ptr().wrapping_offset_from(text.as_ptr()) > cap.start() as isize
                 })
-                .unwrap()
+                .unwrap_or_else(|| panic!("can't find {:?}", cap))
                 .0;
 
             let line = cap.as_str().trim_matches(TRIM_TOKENS).to_owned();
