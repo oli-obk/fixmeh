@@ -1,5 +1,4 @@
 #![recursion_limit = "1024"]
-#![feature(ptr_wrapping_offset_from)]
 
 use std::collections::HashMap;
 use std::io::Read;
@@ -23,9 +22,7 @@ fn main() -> std::io::Result<()> {
             let line_num = text
                 .lines()
                 .enumerate()
-                .find(|(_, s)| {
-                    s.as_ptr().wrapping_offset_from(text.as_ptr()) > cap.start() as isize
-                })
+                .find(|(_, s)| unsafe { s.as_ptr().offset_from(text.as_ptr())} > cap.start() as isize)
                 .unwrap_or_else(|| panic!("can't find {:?}", cap))
                 .0;
 
