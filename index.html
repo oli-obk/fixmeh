@@ -392,10 +392,12 @@ pub static mut HACK: i32 = 0;
                         // FIXME(</span><span><strong>repr_simd</strong></span><span>): </span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;la">rust-la</a></span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;middle&#x2F;src&#x2F;ty&#x2F;sty&#x2E;rs&#x23;L1745">rustc_middle/src/ty/sty<br/></a></td></tr><tr><td><span>) {
                         Ok(ref s) =&gt; {
                             // FIXME(Ma</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;lint&#x2F;src&#x2F;context&#x2E;rs&#x23;L605">rustc_lint/src/context<br/></a></td></tr><tr><td><span>) {
-                    // FIXME(Ma</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;expand&#x2F;src&#x2F;config&#x2E;rs&#x23;L95">rustc_expand/src/config<br/></a></td></tr><tr><td><span>) {
+                    // FIXME(Ma</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;expand&#x2F;src&#x2F;config&#x2E;rs&#x23;L100">rustc_expand/src/config<br/></a></td></tr><tr><td><span>) {
             // FIXME o</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;codegen&#x5F;cranelift&#x2F;src&#x2F;intrinsics&#x2F;mod&#x2E;rs&#x23;L1074">rustc_codegen_cranelift/src/intrinsics/mod<br/></a></td></tr><tr><td><span>) {
         // FIXME if we&#x27;re</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;save&#x5F;analysis&#x2F;src&#x2F;dump&#x5F;visitor&#x2E;rs&#x23;L947">rustc_save_analysis/src/dump_visitor<br/></a></td></tr><tr><td><span>)) =&gt; {
                     // FIXME(#</span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;issues&#x2F;27579">27579</a></span><span>): what amou</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;typeck&#x2F;src&#x2F;check&#x2F;wfcheck&#x2E;rs&#x23;L124">rustc_typeck/src/check/wfcheck<br/></a></td></tr><tr><td><span>));
+
+                // HACK: If our curre</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;parse&#x2F;src&#x2F;parser&#x2F;attr&#x5F;wrapper&#x2E;rs&#x23;L437">rustc_parse/src/parser/attr_wrapper<br/></a></td></tr><tr><td><span>));
             }
 
             // FIXME: Does `asm!` have a</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;mir&#x2F;src&#x2F;transform&#x2F;generator&#x2E;rs&#x23;L1484">rustc_mir/src/transform/generator<br/></a></td></tr><tr><td><span>));
@@ -743,15 +745,17 @@ co</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D
                 diag
             };
 
-            // FIXME(#</span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;issues&#x2F;67563">67563</a></span><span>): Provide more co</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;librustdoc&#x2F;passes&#x2F;check&#x5F;code&#x5F;block&#x5F;syntax&#x2E;rs&#x23;L94">rustdoc/passes/check_code_block_syntax<br/></a></td></tr><tr><td><span>Sig&lt;&#x27;tcx&gt; {
+            // FIXME(#</span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;issues&#x2F;67563">67563</a></span><span>): Provide more co</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;librustdoc&#x2F;passes&#x2F;check&#x5F;code&#x5F;block&#x5F;syntax&#x2E;rs&#x23;L94">rustdoc/passes/check_code_block_syntax<br/></a></td></tr><tr><td><span>Semi
+            } else {
+                // FIXME - pass this through from the place where we k</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;parse&#x2F;src&#x2F;parser&#x2F;expr&#x2E;rs&#x23;L2589">rustc_parse/src/parser/expr<br/></a></td></tr><tr><td><span>Sig&lt;&#x27;tcx&gt; {
         // FIXME(</span><span><strong>davidtwco,eddyb</strong></span><span>): A `ParamE</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;middle&#x2F;src&#x2F;ty&#x2F;layout&#x2E;rs&#x23;L2454">rustc_middle/src/ty/layout<br/></a></td></tr><tr><td><span>Sig&lt;&#x27;tcx&gt;&gt;, &amp;&#x27;tcx rustc_hir::Body&lt;&#x27;tcx&gt;) {
     // FIXME(#</span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;issues&#x2F;79625">79625</a></span><span>): Co</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;mir&#x2F;src&#x2F;transform&#x2F;coverage&#x2F;mod&#x2E;rs&#x23;L527">rustc_mir/src/transform/coverage/mod<br/></a></td></tr><tr><td><span>Static =&gt; {}
             // FIXME(#</span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;issues&#x2F;80564">80564</a></span><span>): We permit struct fields, match arms a</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;passes&#x2F;src&#x2F;check&#x5F;attr&#x2E;rs&#x23;L733">rustc_passes/src/check_attr<br/></a></td></tr><tr><td><span>Strategy` below.
         pub trait DispatcherTrait {
             // HACK(</span><span><strong>eddyb</strong></span><span>) these are here to allow `Self::$</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;library&#x2F;proc&#x5F;macro&#x2F;src&#x2F;bridge&#x2F;server&#x2E;rs&#x23;L88">proc_macro/src/bridge/server<br/></a></td></tr><tr><td><span>Stream, ErrorReported&gt; {
-        // FIXME setup implicit co</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;expand&#x2F;src&#x2F;base&#x2E;rs&#x23;L315">rustc_expand/src/base<br/></a><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;expand&#x2F;src&#x2F;base&#x2E;rs&#x23;L341">rustc_expand/src/base<br/></a></td></tr><tr><td><span>Stream&gt;&gt;(&amp;mut self, streams: I) {
+        // FIXME setup implicit co</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;expand&#x2F;src&#x2F;base&#x2E;rs&#x23;L274">rustc_expand/src/base<br/></a><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;expand&#x2F;src&#x2F;base&#x2E;rs&#x23;L300">rustc_expand/src/base<br/></a></td></tr><tr><td><span>Stream&gt;&gt;(&amp;mut self, streams: I) {
         // FIXME(</span><span><strong>eddyb</strong></span><span>) Use a</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;library&#x2F;proc&#x5F;macro&#x2F;src&#x2F;lib&#x2E;rs&#x23;L217">proc_macro/src/lib<br/></a></td></tr><tr><td><span>Stream`].
-// FIXME: Ma</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;ast&#x2F;src&#x2F;tokenstream&#x2E;rs&#x23;L430">rustc_ast/src/tokenstream<br/></a></td></tr><tr><td><span>Struct
+// FIXME: Ma</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;ast&#x2F;src&#x2F;tokenstream&#x2E;rs&#x23;L576">rustc_ast/src/tokenstream<br/></a></td></tr><tr><td><span>Struct
 }
 
 /* FIXME: `impl Trait&lt;&#x27;a&gt; + &#x27;b` should live as lo</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;test&#x2F;ui&#x2F;impl&#x2D;trait&#x2F;lifetimes&#x2E;rs&#x23;L89">test/ui/impl-trait/lifetimes<br/></a></td></tr><tr><td><span>StructuralMatchTy&lt;&#x27;tcx&gt;&gt; {
@@ -761,7 +765,7 @@ co</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D
                         // FIXME(#</span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;issues&#x2F;60643">60643</a></span><span>): avoid this li</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;bootstrap&#x2F;tool&#x2E;rs&#x23;L347">bootstrap/tool<br/></a></td></tr><tr><td><span>Tree&gt;,
     {
         // FIXME: Share code with `parse_path`.
-        let path = match toke</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;ast&#x2F;src&#x2F;attr&#x2F;mod&#x2E;rs&#x23;L376">rustc_ast/src/attr/mod<br/></a></td></tr><tr><td><span>Type
+        let path = match toke</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;ast&#x2F;src&#x2F;attr&#x2F;mod&#x2E;rs&#x23;L382">rustc_ast/src/attr/mod<br/></a></td></tr><tr><td><span>Type
     // FIXME: get rid of this fu</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;librustdoc&#x2F;clean&#x2F;types&#x2E;rs&#x23;L1371">rustdoc/clean/types<br/></a></td></tr><tr><td><span>Type,
     );
 
@@ -897,7 +901,11 @@ pub mod vec;
     // FIXME(#</span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;issues&#x2F;77199">77199</a></span><span>, </span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;issues&#x2F;77200">77200</a></span><span>) Rustdoc should just war</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;tools&#x2F;linkchecker&#x2F;main&#x2E;rs&#x23;L332">tools/linkchecker/main<br/></a></td></tr><tr><td><span>about a `BytePos`.
     // FIXME(</span><span><strong>eddyb</strong></span><span>) re</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;codegen&#x5F;llvm&#x2F;src&#x2F;debuginfo&#x2F;mod&#x2E;rs&#x23;L233">rustc_codegen_llvm/src/debuginfo/mod<br/></a></td></tr><tr><td><span>access levels
                 // FIXME: Tur</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;lint&#x2F;src&#x2F;lib&#x2E;rs&#x23;L165">rustc_lint/src/lib<br/></a></td></tr><tr><td><span>activate(&amp;self) -&gt; ActiveTls&lt;&#x27;_&gt; {
-        // FIXME: Needs safety i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;library&#x2F;std&#x2F;src&#x2F;sys&#x2F;sgx&#x2F;abi&#x2F;tls&#x2E;rs&#x23;L89">std/src/sys/sgx/abi/tls<br/></a></td></tr><tr><td><span>al feature gates
+        // FIXME: Needs safety i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;library&#x2F;std&#x2F;src&#x2F;sys&#x2F;sgx&#x2F;abi&#x2F;tls&#x2E;rs&#x23;L89">std/src/sys/sgx/abi/tls<br/></a></td></tr><tr><td><span>al
+    }
+}
+
+// FIXME: Fi</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;session&#x2F;src&#x2F;utils&#x2E;rs&#x23;L59">rustc_session/src/utils<br/></a></td></tr><tr><td><span>al feature gates
     // -------------------------------------------------------------------------
 
     // -------------------------------------------------------------------------
@@ -1053,8 +1061,7 @@ pub mod vec;
         //
         // FIXME: These should really be pri</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;mir&#x2F;src&#x2F;dataflow&#x2F;framework&#x2F;graphviz&#x2E;rs&#x23;L228">rustc_mir/src/dataflow/framework/graphviz<br/></a></td></tr><tr><td><span>attrs {
             if let Some(val) = attr.doc_str() {
-                // FIXME: Should save-a</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;save&#x5F;analysis&#x2F;src&#x2F;lib&#x2E;rs&#x23;L822">rustc_save_analysis/src/lib<br/></a></td></tr><tr><td><span>attrs {
-        // FIXME: Correctly ha</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;parse&#x2F;src&#x2F;lib&#x2E;rs&#x23;L318">rustc_parse/src/lib<br/></a></td></tr><tr><td><span>ature for this
+                // FIXME: Should save-a</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;save&#x5F;analysis&#x2F;src&#x2F;lib&#x2E;rs&#x23;L822">rustc_save_analysis/src/lib<br/></a></td></tr><tr><td><span>ature for this
     /// closure.
     // FIXME(</span><span><strong>eddyb</strong></span><span>) this should be u</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;middle&#x2F;src&#x2F;ty&#x2F;sty&#x2E;rs&#x23;L415">rustc_middle/src/ty/sty<br/></a></td></tr><tr><td><span>ature must match the trait.
             //
@@ -1368,9 +1375,7 @@ pub struct Stdout {
 }
 
 // ^ FIXME: Is a I</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;data&#x5F;structures&#x2F;src&#x2F;owning&#x5F;ref&#x2F;mod&#x2E;rs&#x23;L969">rustc_data_structures/src/owning_ref/mod<br/></a></td></tr><tr><td><span>ce&quot;), () {
-            // FIXME use a compiler fe</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;codegen&#x5F;cranelift&#x2F;src&#x2F;intrinsics&#x2F;mod&#x2E;rs&#x23;L884">rustc_codegen_cranelift/src/intrinsics/mod<br/></a></td></tr><tr><td><span>ce(&amp;mut Self, Vec&lt;ast::Attribute&gt;) -&gt; PResult&lt;&#x27;a, P&lt;Expr&gt;&gt;,
-    ) -&gt; PResult&lt;&#x27;a, P&lt;Expr&gt;&gt; {
-        // FIXME - come up with a</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;parse&#x2F;src&#x2F;parser&#x2F;expr&#x2E;rs&#x23;L2582">rustc_parse/src/parser/expr<br/></a></td></tr><tr><td><span>ce(&amp;mut T) -&gt; &amp;mut U,
+            // FIXME use a compiler fe</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;codegen&#x5F;cranelift&#x2F;src&#x2F;intrinsics&#x2F;mod&#x2E;rs&#x23;L884">rustc_codegen_cranelift/src/intrinsics/mod<br/></a></td></tr><tr><td><span>ce(&amp;mut T) -&gt; &amp;mut U,
     {
         // FIXME(</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;library&#x2F;core&#x2F;src&#x2F;cell&#x2E;rs&#x23;L1468">core/src/cell<br/></a></td></tr><tr><td><span>ce): see the related FIXME above.
             _ =&gt; self.i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;infer&#x2F;src&#x2F;infer&#x2F;nll&#x5F;relate&#x2F;mod&#x2E;rs&#x23;L604">rustc_infer/src/infer/nll_relate/mod<br/></a></td></tr><tr><td><span>ce.
@@ -1548,7 +1553,8 @@ struct Node&lt;T&gt; {
 
         let (might_be_alive, will_be_dropped) =
             if self.body.local_decls[root_place.local].is_ref_to_thread_local() {
-                // Thread-locals might be dropped after the fu</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;mir&#x2F;src&#x2F;borrow&#x5F;check&#x2F;mod&#x2E;rs&#x23;L1526">rustc_mir/src/borrow_check/mod<br/></a></td></tr><tr><td><span>d gave it up.
+                // Thread-locals might be dropped after the fu</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;mir&#x2F;src&#x2F;borrow&#x5F;check&#x2F;mod&#x2E;rs&#x23;L1526">rustc_mir/src/borrow_check/mod<br/></a></td></tr><tr><td><span>d close delims.
+// FIXME(#</span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;issues&#x2F;67062">67062</a></span><span>): Curre</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;parse&#x2F;src&#x2F;parser&#x2F;attr&#x5F;wrapper&#x2E;rs&#x23;L400">rustc_parse/src/parser/attr_wrapper<br/></a></td></tr><tr><td><span>d gave it up.
                 // FIXME: lifetimes
                 let llarg = bx.get_param(llarg_idx);
                 llarg_idx += 1;
@@ -1588,6 +1594,7 @@ struct Node&lt;T&gt; {
     /// FIXME: This solutio</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;privacy&#x2F;src&#x2F;lib&#x2E;rs&#x23;L588">rustc_privacy/src/lib<br/></a></td></tr><tr><td><span>d values.
     /// FIXME #</span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;issues&#x2F;4948">4948</a></span><span>: Reuse ribs to avoid allocatio</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;resolve&#x2F;src&#x2F;late&#x2E;rs&#x23;L406">rustc_resolve/src/late<br/></a></td></tr><tr><td><span>d {
                                 // FIXME(</span><span><strong>eddyb</strong></span><span>) this might be i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;middle&#x2F;src&#x2F;ty&#x2F;layout&#x2E;rs&#x23;L927">rustc_middle/src/ty/layout<br/></a></td></tr><tr><td><span>d {
+                            // FIXME: Collect toke</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;expand&#x2F;src&#x2F;expand&#x2E;rs&#x23;L719">rustc_expand/src/expand<br/></a></td></tr><tr><td><span>d {
                         } else {
                             // FIXME Ca</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;codegen&#x5F;cranelift&#x2F;src&#x2F;base&#x2E;rs&#x23;L233">rustc_codegen_cranelift/src/base<br/></a></td></tr><tr><td><span>d {
                     // FIXME(#</span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;issues&#x2F;48193">48193</a></span><span>) Deaggregate arrays whe</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;mir&#x2F;src&#x2F;transform&#x2F;deaggregator&#x2E;rs&#x23;L15">rustc_mir/src/transform/deaggregator<br/></a></td></tr><tr><td><span>d {
@@ -3154,7 +3161,8 @@ struct LocalCollector {
         // FIXME: Experime</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;tools&#x2F;unicode&#x2D;table&#x2D;generator&#x2F;src&#x2F;raw&#x5F;emitter&#x2E;rs&#x23;L257">tools/unicode-table-generator/src/raw_emitter<br/></a></td></tr><tr><td><span>e threshold = {}&quot;, threshold);
 
         // FIXME: Give a bo</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;mir&#x2F;src&#x2F;transform&#x2F;inline&#x2E;rs&#x23;L354">rustc_mir/src/transform/inline<br/></a></td></tr><tr><td><span>e to start with &#x27;{&#x27; )
-// FIXME: We curre</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;test&#x2F;ui&#x2F;proc&#x2D;macro&#x2F;issue&#x2D;75930&#x2D;derive&#x2D;cfg&#x2E;rs&#x23;L10">test/ui/proc-macro/issue-75930-derive-cfg<br/></a></td></tr><tr><td><span>e(&amp;self) -&gt; Self {
+// FIXME: We curre</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;test&#x2F;ui&#x2F;proc&#x2D;macro&#x2F;issue&#x2D;75930&#x2D;derive&#x2D;cfg&#x2E;rs&#x23;L10">test/ui/proc-macro/issue-75930-derive-cfg<br/></a></td></tr><tr><td><span>e | Some(Greater)`.
+        // FIXME: The root cause was fixed upstream i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;library&#x2F;core&#x2F;src&#x2F;cmp&#x2E;rs&#x23;L984">core/src/cmp<br/></a></td></tr><tr><td><span>e(&amp;self) -&gt; Self {
         // FIXME: applicable here
         Bad
     }
@@ -3189,7 +3197,7 @@ impl SelfTrait for Good {
         //             docs: Stri</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;save&#x5F;analysis&#x2F;src&#x2F;dump&#x5F;visitor&#x2E;rs&#x23;L975">rustc_save_analysis/src/dump_visitor<br/></a></td></tr><tr><td><span>e(), false, true, |_| true, force_collect)?
         {
             // FIXME: Bad copy of attrs
-            self.mk_stmt(lo.to(item.spa</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;parse&#x2F;src&#x2F;parser&#x2F;stmt&#x2E;rs&#x23;L91">rustc_parse/src/parser/stmt<br/></a></td></tr><tr><td><span>e();
+            self.mk_stmt(lo.to(item.spa</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;parse&#x2F;src&#x2F;parser&#x2F;stmt&#x2E;rs&#x23;L78">rustc_parse/src/parser/stmt<br/></a></td></tr><tr><td><span>e();
         v = Big::from_small(1);
         v.mul_pow5(e_abs).mul_pow2(e_abs);
     } else {
@@ -3513,7 +3521,7 @@ use Tr::{}; // FIXME, this a</span></td><td><a href="https&#x3A;&#x2F;&#x2F;gith
         // FIXME: refactor this i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;typeck&#x2F;src&#x2F;check&#x2F;fn&#x5F;ctxt&#x2F;mod&#x2E;rs&#x23;L177">rustc_typeck/src/check/fn_ctxt/mod<br/></a></td></tr><tr><td><span>ess);
 }
 
-// FIXME: Avoid visiti</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;ast&#x2F;src&#x2F;mut&#x5F;visit&#x2E;rs&#x23;L1003">rustc_ast/src/mut_visit<br/></a></td></tr><tr><td><span>ess,
+// FIXME: Avoid visiti</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;ast&#x2F;src&#x2F;mut&#x5F;visit&#x2E;rs&#x23;L1044">rustc_ast/src/mut_visit<br/></a></td></tr><tr><td><span>ess,
     pub value: T,
 }
 
@@ -3542,7 +3550,9 @@ use Tr::{}; // FIXME, this a</span></td><td><a href="https&#x3A;&#x2F;&#x2F;gith
     // FIXME: stabilizatio</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;library&#x2F;std&#x2F;src&#x2F;path&#x2E;rs&#x23;L2491">std/src/path<br/></a></td></tr><tr><td><span>ew() -&gt; P&lt;[T]&gt; {
         // HACK(</span><span><strong>eddyb</strong></span><span>) bypass the lack of a `co</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;ast&#x2F;src&#x2F;ptr&#x2E;rs&#x23;L130">rustc_ast/src/ptr<br/></a></td></tr><tr><td><span>ew() }.visit_body(body);
 
-        // FIXME fix debug i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;mir&#x2F;src&#x2F;transform&#x2F;dest&#x5F;prop&#x2E;rs&#x23;L213">rustc_mir/src/transform/dest_prop<br/></a></td></tr><tr><td><span>ew();
+        // FIXME fix debug i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;mir&#x2F;src&#x2F;transform&#x2F;dest&#x5F;prop&#x2E;rs&#x23;L213">rustc_mir/src/transform/dest_prop<br/></a></td></tr><tr><td><span>ew(), start_pos: usize::MAX }
+    }
+    // FIXME: Delay spa</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;parse&#x2F;src&#x2F;parser&#x2F;attr&#x5F;wrapper&#x2E;rs&#x23;L45">rustc_parse/src/parser/attr_wrapper<br/></a></td></tr><tr><td><span>ew();
 
                 // FIXME: remove the #[allow(...)] marker whe</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;library&#x2F;std&#x2F;src&#x2F;thread&#x2F;local&#x2E;rs&#x23;L177">std/src/thread/local<br/></a></td></tr><tr><td><span>ew();
 
@@ -3570,10 +3580,7 @@ use Tr::{}; // FIXME, this a</span></td><td><a href="https&#x3A;&#x2F;&#x2F;gith
 }
 
 // FIXME: Probably a bad idea
-impl&lt;T: Clo</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;data&#x5F;structures&#x2F;src&#x2F;sync&#x2E;rs&#x23;L503">rustc_data_structures/src/sync<br/></a></td></tr><tr><td><span>ew(attrs: Vec&lt;ast::Attribute&gt;) -&gt; AttrWrapper {
-        AttrWrapper { attrs }
-    }
-    // FIXME: Delay spa</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;parse&#x2F;src&#x2F;parser&#x2F;attr&#x5F;wrapper&#x2E;rs&#x23;L33">rustc_parse/src/parser/attr_wrapper<br/></a></td></tr><tr><td><span>ew(body).simplify();
+impl&lt;T: Clo</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;data&#x5F;structures&#x2F;src&#x2F;sync&#x2E;rs&#x23;L503">rustc_data_structures/src/sync<br/></a></td></tr><tr><td><span>ew(body).simplify();
     remove_dead_blocks(body);
 
     // FIXME: Should probably be moved i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;mir&#x2F;src&#x2F;transform&#x2F;simplify&#x2E;rs&#x23;L50">rustc_mir/src/transform/simplify<br/></a></td></tr><tr><td><span>ew(db));
@@ -3606,7 +3613,9 @@ impl&lt;&#x27;a, &#x27;b, T: LambdaL&gt; Deref for RefMutL&lt;&#x27;a, &#x27;b, 
 /// FIXME: This duplicates code i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;lint&#x2F;src&#x2F;types&#x2E;rs&#x23;L777">rustc_lint/src/types<br/></a></td></tr><tr><td><span>expected_after_dot(&amp;self) {
         // FIXME Could factor this out i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;parse&#x2F;src&#x2F;parser&#x2F;expr&#x2E;rs&#x23;L909">rustc_parse/src/parser/expr<br/></a></td></tr><tr><td><span>explicit trait hierarchy
 
-// FIXME: this does</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;test&#x2F;ui&#x2F;specialization&#x2F;specialization&#x2D;super&#x2D;traits&#x2E;rs&#x23;L5">test/ui/specialization/specialization-super-traits<br/></a></td></tr><tr><td><span>ext_ty_var(
+// FIXME: this does</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;test&#x2F;ui&#x2F;specialization&#x2F;specialization&#x2D;super&#x2D;traits&#x2E;rs&#x23;L5">test/ui/specialization/specialization-super-traits<br/></a></td></tr><tr><td><span>ext();
+    }
+    // HACK: If we do</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;parse&#x2F;src&#x2F;parser&#x2F;attr&#x5F;wrapper&#x2E;rs&#x23;L480">rustc_parse/src/parser/attr_wrapper<br/></a></td></tr><tr><td><span>ext_ty_var(
                 // FIXME: `MiscVariable` for</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;typeck&#x2F;src&#x2F;check&#x2F;pat&#x2E;rs&#x23;L1124">rustc_typeck/src/check/pat<br/></a></td></tr><tr><td><span>f.html&quot;]&#x27; &quot;g&quot;
 pub use f as g;
 
@@ -3950,7 +3959,7 @@ macro_rules! bar {
 #![de</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;test&#x2F;ui&#x2F;rfc&#x2D;2008&#x2D;non&#x2D;exhaustive&#x2F;uninhabited&#x2F;patterns&#x2E;rs&#x23;L1">test/ui/rfc-2008-non-exhaustive/uninhabited/patterns<br/></a></td></tr><tr><td><span>here.
     // FIXME: this should</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;mir&#x2F;src&#x2F;interpret&#x2F;memory&#x2E;rs&#x23;L101">rustc_mir/src/interpret/memory<br/></a></td></tr><tr><td><span>herits the lifetime
         /// parameter from `A`.
-        // FIXME(</span><span><strong>impl_trait</strong></span><span>): but `required_regio</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;ast&#x5F;lowering&#x2F;src&#x2F;lib&#x2E;rs&#x23;L251">rustc_ast_lowering/src/lib<br/></a></td></tr><tr><td><span>ic }
+        // FIXME(</span><span><strong>impl_trait</strong></span><span>): but `required_regio</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;ast&#x5F;lowering&#x2F;src&#x2F;lib&#x2E;rs&#x23;L249">rustc_ast_lowering/src/lib<br/></a></td></tr><tr><td><span>ic }
     }
 
     // FIXME: Avoid visiti</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;expand&#x2F;src&#x2F;expand&#x2E;rs&#x23;L358">rustc_expand/src/expand<br/></a></td></tr><tr><td><span>ic)]
@@ -3983,8 +3992,8 @@ pub struct Fixed64(i64);
                     // FIXME(</span><span><strong>eddyb</strong></span><span>): check the actual primitive type here.
                     let</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;codegen&#x5F;ssa&#x2F;src&#x2F;mir&#x2F;place&#x2E;rs&#x23;L354">rustc_codegen_ssa/src/mir/place<br/></a></td></tr><tr><td><span>iche_value == 0 {
                         // HACK(</span><span><strong>eddyb</strong></span><span>): usi</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;codegen&#x5F;ssa&#x2F;src&#x2F;mir&#x2F;place&#x2E;rs&#x23;L356">rustc_codegen_ssa/src/mir/place<br/></a></td></tr><tr><td><span>id: NodeId, default: Abi) {
-        // FIXME(</span><span><strong>davidtwco</strong></span><span>): This is a hack to detect macros which produce spa</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;ast&#x5F;lowering&#x2F;src&#x2F;lib&#x2E;rs&#x23;L2787">rustc_ast_lowering/src/lib<br/></a></td></tr><tr><td><span>id: NodeId, is_global: bool) {
-        // FIXME(</span><span><strong>davidtwco</strong></span><span>): This is a hack to detect macros which produce spa</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;ast&#x5F;lowering&#x2F;src&#x2F;lib&#x2E;rs&#x23;L2767">rustc_ast_lowering/src/lib<br/></a></td></tr><tr><td><span>idx)?;
+        // FIXME(</span><span><strong>davidtwco</strong></span><span>): This is a hack to detect macros which produce spa</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;ast&#x5F;lowering&#x2F;src&#x2F;lib&#x2E;rs&#x23;L2749">rustc_ast_lowering/src/lib<br/></a></td></tr><tr><td><span>id: NodeId, is_global: bool) {
+        // FIXME(</span><span><strong>davidtwco</strong></span><span>): This is a hack to detect macros which produce spa</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;ast&#x5F;lowering&#x2F;src&#x2F;lib&#x2E;rs&#x23;L2729">rustc_ast_lowering/src/lib<br/></a></td></tr><tr><td><span>idx)?;
                 // FIXME(jschievi</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;trait&#x5F;selection&#x2F;src&#x2F;traits&#x2F;select&#x2F;confirmation&#x2E;rs&#x23;L74">rustc_trait_selection/src/traits/select/confirmation<br/></a></td></tr><tr><td><span>if tcx.sess.target.is_like_osx {
                 3
             } else {
@@ -4179,7 +4188,7 @@ f</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;
 //
 // FIXME: Curre</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;mir&#x2F;src&#x2F;util&#x2F;storage&#x2E;rs&#x23;L6">rustc_mir/src/util/storage<br/></a></td></tr><tr><td><span>opaque type).
                     //
-                    // FIXME: this is o</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;ast&#x5F;lowering&#x2F;src&#x2F;lib&#x2E;rs&#x23;L1146">rustc_ast_lowering/src/lib<br/></a></td></tr><tr><td><span>order.
+                    // FIXME: this is o</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;ast&#x5F;lowering&#x2F;src&#x2F;lib&#x2E;rs&#x23;L1108">rustc_ast_lowering/src/lib<br/></a></td></tr><tr><td><span>order.
     /// `true` by default.
     //
     // FIXME(</span><span><strong>misdreavus</strong></span><span>): the flag</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;librustdoc&#x2F;config&#x2E;rs&#x23;L218">rustdoc/config<br/></a></td></tr><tr><td><span>ore (FIXME)
@@ -4375,7 +4384,8 @@ f</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;
                 to_ptr.store(fx, val, flags);
                 retur</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;codegen&#x5F;cranelift&#x2F;src&#x2F;value&#x5F;and&#x5F;place&#x2E;rs&#x23;L524">rustc_codegen_cranelift/src/value_and_place<br/></a></td></tr><tr><td><span>outer attribute
 
-// FIXME: Allow attributes i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;test&#x2F;ui&#x2F;parser&#x2F;attr&#x2D;stmt&#x2D;expr&#x2D;attr&#x2D;bad&#x2E;rs&#x23;L83">test/ui/parser/attr-stmt-expr-attr-bad<br/></a></td></tr><tr><td><span>ow the crate root.
+// FIXME: Allow attributes i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;test&#x2F;ui&#x2F;parser&#x2F;attr&#x2D;stmt&#x2D;expr&#x2D;attr&#x2D;bad&#x2E;rs&#x23;L83">test/ui/parser/attr-stmt-expr-attr-bad<br/></a></td></tr><tr><td><span>outer_attrs {
+                        // FIXME: Make this more efficie</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;ast&#x2F;src&#x2F;tokenstream&#x2E;rs&#x23;L284">rustc_ast/src/tokenstream<br/></a></td></tr><tr><td><span>ow the crate root.
             // FIXME(#</span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;issues&#x2F;78696">78696</a></span><span>): This does</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;librustdoc&#x2F;passes&#x2F;collect&#x5F;intra&#x5F;doc&#x5F;links&#x2E;rs&#x23;L1021">rustdoc/passes/collect_intra_doc_links<br/></a></td></tr><tr><td><span>ow.
     // FIXME(</span><span><strong>mikeyhew</strong></span><span>) this is a total hack. O</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;trait&#x5F;selection&#x2F;src&#x2F;traits&#x2F;object&#x5F;safety&#x2E;rs&#x23;L649">rustc_trait_selection/src/traits/object_safety<br/></a></td></tr><tr><td><span>parseableFloat) =&gt; {
                 // FIXME(#</span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;issues&#x2F;31407">31407</a></span><span>) this is o</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;mir&#x5F;build&#x2F;src&#x2F;thir&#x2F;cx&#x2F;mod&#x2E;rs&#x23;L67">rustc_mir_build/src/thir/cx/mod<br/></a></td></tr><tr><td><span>pass
@@ -4535,8 +4545,7 @@ pub f</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#
                 }
                 if li</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;tools&#x2F;tidy&#x2F;src&#x2F;style&#x2E;rs&#x23;L300">tools/tidy/src/style<br/></a></td></tr><tr><td><span>s(&amp;CrateType::ProcMacro)
         {
-            // FIXME: Whe</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;session&#x2F;src&#x2F;session&#x2E;rs&#x23;L755">rustc_session/src/session<br/></a></td></tr><tr><td><span>s(&amp;self.cx.sess.parse_sess),
-                        // FIXME: Properly collect toke</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;expand&#x2F;src&#x2F;expand&#x2E;rs&#x23;L707">rustc_expand/src/expand<br/></a></td></tr><tr><td><span>s() {
+            // FIXME: Whe</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;session&#x2F;src&#x2F;session&#x2E;rs&#x23;L755">rustc_session/src/session<br/></a></td></tr><tr><td><span>s() {
         // FIXME(impl_trait_i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;typeck&#x2F;src&#x2F;collect&#x2F;type&#x5F;of&#x2E;rs&#x23;L706">rustc_typeck/src/collect/type_of<br/></a></td></tr><tr><td><span>s().atomic_rmw(ty, MemFlags::trusted(), AtomicRmwOp::Xor, ptr, src);
 
             let old = CValue::by_val(old, layout);
@@ -5116,7 +5125,11 @@ f</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;
     assert_eq::&lt;u64&gt;((-f64::NAN) as u64, 0);
 
     // FIXME emscripte</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;test&#x2F;ui&#x2F;numbers&#x2D;arithmetic&#x2F;saturating&#x2D;float&#x2D;casts&#x2D;impl&#x2E;rs&#x23;L328">test/ui/numbers-arithmetic/saturating-float-casts-impl<br/></a></td></tr><tr><td><span>tactically.
-// FIXME(Ce</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;test&#x2F;ui&#x2F;half&#x2D;open&#x2D;range&#x2D;patterns&#x2F;half&#x2D;open&#x2D;range&#x2D;pats&#x2D;inclusive&#x2D;no&#x2D;end&#x2E;rs&#x23;L1">test/ui/half-open-range-patterns/half-open-range-pats-inclusive-no-end<br/></a></td></tr><tr><td><span>tal() =&gt; {
+// FIXME(Ce</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;test&#x2F;ui&#x2F;half&#x2D;open&#x2D;range&#x2D;patterns&#x2F;half&#x2D;open&#x2D;range&#x2D;pats&#x2D;inclusive&#x2D;no&#x2D;end&#x2E;rs&#x23;L1">test/ui/half-open-range-patterns/half-open-range-pats-inclusive-no-end<br/></a></td></tr><tr><td><span>take_for_recovery(self) -&gt; AttrVec {
+        self.attrs
+    }
+
+    // FIXME: require passi</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;parse&#x2F;src&#x2F;parser&#x2F;attr&#x5F;wrapper&#x2E;rs&#x23;L48">rustc_parse/src/parser/attr_wrapper<br/></a></td></tr><tr><td><span>tal() =&gt; {
             let mut types = substs.types();
 
             // FIXME(</span><span><strong>eddyb</strong></span><span>) actually validate `#[fu</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;trait&#x5F;selection&#x2F;src&#x2F;traits&#x2F;coherence&#x2E;rs&#x23;L498">rustc_trait_selection/src/traits/coherence<br/></a></td></tr><tr><td><span>target: Target) -&gt; bool {
@@ -5210,7 +5223,7 @@ where
         // FIXME: Switch to usi</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;codegen&#x5F;ssa&#x2F;src&#x2F;back&#x2F;linker&#x2E;rs&#x23;L326">rustc_codegen_ssa/src/back/linker<br/></a></td></tr><tr><td><span>the alloca.
                 // FIXME(</span><span><strong>eddyb</strong></span><span>): We should figure out how to use llvm.dbg.value i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;codegen&#x5F;ssa&#x2F;src&#x2F;mir&#x2F;mod&#x2E;rs&#x23;L407">rustc_codegen_ssa/src/mir/mod<br/></a></td></tr><tr><td><span>the ecosystem.
 /// See issue #</span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;issues&#x2F;73345">73345</a></span><span> for more details.
-/// FIXME(#</span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;issues&#x2F;73933">73933</a></span><span>): Remove this eve</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;expand&#x2F;src&#x2F;base&#x2E;rs&#x23;L1249">rustc_expand/src/base<br/></a></td></tr><tr><td><span>the lock.
+/// FIXME(#</span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;issues&#x2F;73933">73933</a></span><span>): Remove this eve</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;expand&#x2F;src&#x2F;base&#x2E;rs&#x23;L1208">rustc_expand/src/base<br/></a></td></tr><tr><td><span>the lock.
     // FIXME: Call `is_i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;mir&#x2F;src&#x2F;monomorphize&#x2F;collector&#x2E;rs&#x23;L419">rustc_mir/src/monomorphize/collector<br/></a></td></tr><tr><td><span>the same order as hir::Item_;
                     // FIXME(</span><span><strong>michaelwoerister</strong></span><span>): do comme</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;incremental&#x2F;src&#x2F;persist&#x2F;dirty&#x5F;clean&#x2E;rs&#x23;L251">rustc_incremental/src/persist/dirty_clean<br/></a></td></tr><tr><td><span>the stack.
 
@@ -5277,7 +5290,8 @@ f</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;
                         ));
                     } else {
                         // Yes, resolved, proceed with the result.
-                        // FIXME(</span><span><strong>eddyb</strong></span><span>) add the type to `walker` i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;trait&#x5F;selection&#x2F;src&#x2F;traits&#x2F;wf&#x2E;rs&#x23;L667">rustc_trait_selection/src/traits/wf<br/></a></td></tr><tr><td><span>to(),
+                        // FIXME(</span><span><strong>eddyb</strong></span><span>) add the type to `walker` i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;trait&#x5F;selection&#x2F;src&#x2F;traits&#x2F;wf&#x2E;rs&#x23;L667">rustc_trait_selection/src/traits/wf<br/></a></td></tr><tr><td><span>to())?;
+            // FIXME - maybe capture semicolo</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;parse&#x2F;src&#x2F;parser&#x2F;stmt&#x2E;rs&#x23;L213">rustc_parse/src/parser/stmt<br/></a></td></tr><tr><td><span>to(),
                     ));
                 }
 
@@ -5290,7 +5304,7 @@ f</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;
     // FIXME this is a false</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;tools&#x2F;clippy&#x2F;tests&#x2F;ui&#x2F;useless&#x5F;conversion&#x5F;try&#x2E;rs&#x23;L37">tools/clippy/tests/ui/useless_conversion_try<br/></a></td></tr><tr><td><span>toIterator&lt;Item = Result&lt;A, E&gt;&gt;&gt;(iter: I) -&gt; Result&lt;V, E&gt; {
         // FIXME(#</span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;issues&#x2F;11084">11084</a></span><span>): This could be replaced with Iterator::sca</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;library&#x2F;core&#x2F;src&#x2F;result&#x2E;rs&#x23;L1621">core/src/result<br/></a></td></tr><tr><td><span>to_iter()
                                 .map(|(path, _exts)| {
-                                    // FIXME: Co</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;expand&#x2F;src&#x2F;expand&#x2E;rs&#x23;L517">rustc_expand/src/expand<br/></a></td></tr><tr><td><span>to_raw(box p);
+                                    // FIXME: Co</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;expand&#x2F;src&#x2F;expand&#x2E;rs&#x23;L518">rustc_expand/src/expand<br/></a></td></tr><tr><td><span>to_raw(box p);
 
         // FIXME O</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;library&#x2F;std&#x2F;src&#x2F;sys&#x2F;windows&#x2F;thread&#x2E;rs&#x23;L22">std/src/sys/windows/thread<br/></a></td></tr><tr><td><span>to_vec(box [$($x),+]))
     );
@@ -5353,7 +5367,7 @@ crate struct Upvar&lt;&#x27;tcx&gt; {
                 // There is a bug i</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;codegen&#x5F;llvm&#x2F;src&#x2F;debuginfo&#x2F;mod&#x2E;rs&#x23;L389">rustc_codegen_llvm/src/debuginfo/mod<br/></a></td></tr><tr><td><span>ts {
                 // FIXME: `trait_ref.path.spa</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;typeck&#x2F;src&#x2F;astconv&#x2F;errors&#x2E;rs&#x23;L241">rustc_typeck/src/astconv/errors<br/></a></td></tr><tr><td><span>ts&quot;
                     );
-                    // FIXME: try to write a suggestio</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;ast&#x5F;lowering&#x2F;src&#x2F;lib&#x2E;rs&#x23;L1095">rustc_ast_lowering/src/lib<br/></a></td></tr><tr><td><span>ts(|stmt| {
+                    // FIXME: try to write a suggestio</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;ast&#x5F;lowering&#x2F;src&#x2F;lib&#x2E;rs&#x23;L1057">rustc_ast_lowering/src/lib<br/></a></td></tr><tr><td><span>ts(|stmt| {
                 // FIXME(</span><span><strong>eddyb</strong></span><span>) do</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;mir&#x2F;src&#x2F;transform&#x2F;deaggregator&#x2E;rs&#x23;L13">rustc_mir/src/transform/deaggregator<br/></a></td></tr><tr><td><span>ts.
 
         // FIXME(</span><span><strong>LukasKalbertodt</strong></span><span>): actually use `mem::tra</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;library&#x2F;core&#x2F;src&#x2F;array&#x2F;iter&#x2E;rs&#x23;L64">core/src/array/iter<br/></a></td></tr><tr><td><span>ts.
@@ -5482,7 +5496,9 @@ use S::{}; // FIXME, this a</span></td><td><a href="https&#x3A;&#x2F;&#x2F;githu
 
 // build-pass (FIXME(</span><span><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;issues&#x2F;62277">62277</a></span><span>): could be check-pass?)
 
-#![war</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;test&#x2F;ui&#x2F;conditional&#x2D;compilation&#x2F;cfg&#x2D;attr&#x2D;multi&#x2D;false&#x2E;rs&#x23;L2">test/ui/conditional-compilation/cfg-attr-multi-false<br/></a></td></tr><tr><td><span>voked.
+#![war</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;src&#x2F;test&#x2F;ui&#x2F;conditional&#x2D;compilation&#x2F;cfg&#x2D;attr&#x2D;multi&#x2D;false&#x2E;rs&#x23;L2">test/ui/conditional-compilation/cfg-attr-multi-false<br/></a></td></tr><tr><td><span>visible to proc-macros.
+
+        // FIXME - get rid of this clo</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;builtin&#x5F;macros&#x2F;src&#x2F;cfg&#x5F;eval&#x2E;rs&#x23;L141">rustc_builtin_macros/src/cfg_eval<br/></a></td></tr><tr><td><span>voked.
     /// FIXME: `derives` are missi</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;resolve&#x2F;src&#x2F;lib&#x2E;rs&#x23;L975">rustc_resolve/src/lib<br/></a></td></tr><tr><td><span>vtable&quot; },
                 );
                 // FIXME: More checks for the vtable.
@@ -5599,5 +5615,6 @@ f</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;
 }
 
 // FIXME(</span><span><strong>eddyb</strong></span><span>) `Literal` should</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;expand&#x2F;src&#x2F;proc&#x5F;macro&#x5F;server&#x2E;rs&#x23;L346">rustc_expand/src/proc_macro_server<br/></a></td></tr><tr><td><span>}) =&gt; {
+                // HACK: If we e</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;parse&#x2F;src&#x2F;parser&#x2F;attr&#x5F;wrapper&#x2E;rs&#x23;L425">rustc_parse/src/parser/attr_wrapper<br/></a></td></tr><tr><td><span>}) =&gt; {
             // FIXME: Ha</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;expand&#x2F;src&#x2F;mbe&#x2F;quoted&#x2E;rs&#x23;L146">rustc_expand/src/mbe/quoted<br/></a></td></tr><tr><td><span>}) =&gt; {
             // HACK(jy</span></td><td><a href="https&#x3A;&#x2F;&#x2F;github&#x2E;com&#x2F;rust&#x2D;lang&#x2F;rust&#x2F;blob&#x2F;master&#x2F;compiler&#x2F;rustc&#x5F;typeck&#x2F;src&#x2F;check&#x2F;check&#x2E;rs&#x23;L838">rustc_typeck/src/check/check<br/></a></td></tr></table></body></html>
