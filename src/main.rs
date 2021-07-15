@@ -10,7 +10,7 @@ use typed_html::{html, text};
 fn main() -> std::io::Result<()> {
     const TRIM_TOKENS: &[char] = &['/', '*', ' ', ':', '-', '.', '^', ','];
     let mut dedup: HashMap<_, Vec<_>> = HashMap::new();
-    let re = regex::Regex::new(r"[^\\n]*(FIXME|HACK)[^\\n]*").unwrap();
+    let re = regex::Regex::new(r"[^\n]*(FIXME|HACK)[^\n]*").unwrap();
     for file in glob::glob("rust/**/*.rs").expect("glob pattern failed") {
         let filename = file.unwrap();
         let mut text = String::new();
