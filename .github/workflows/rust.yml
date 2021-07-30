@@ -1,0 +1,31 @@
+name: Rust
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Clone rust repo
+      run: git clone git@github.com:rust-lang/rust.git --depth=1
+    - name: Build
+      run: cargo build --verbose
+    - name: Run tests
+      run: cargo test --verbose
+    - name: Generate
+      run: cargo run
+    - name: GitHub Pages
+      uses: crazy-max/ghaction-github-pages@v2.5.0
+      with:
+        # Build directory to deploy
+        build_dir: build
