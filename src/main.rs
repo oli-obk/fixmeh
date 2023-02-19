@@ -1,11 +1,23 @@
-#![recursion_limit = "1024"]
+#![recursion_limit = "4096"]
 
 use std::collections::HashMap;
 use std::io::Read;
 use std::io::Write;
 use std::path::PathBuf;
-use typed_html::dom::DOMTree;
-use typed_html::{html, text};
+
+use maud::{Markup, PreEscaped, Render, html};
+
+fn into_markup<T>(x: T) -> Markup
+where
+    T: IntoIterator,
+    T::Item: Render
+{
+    let mut s = String::new();
+    for item in x {
+        item.render_to(&mut s);
+    }
+    PreEscaped(s)
+}
 
 fn main() -> std::io::Result<()> {
     const TRIM_TOKENS: &[char] = &['/', '*', ' ', ':', '-', '.', '^', ','];
@@ -41,84 +53,104 @@ fn main() -> std::io::Result<()> {
     // We can't depend on a starting `#` either, because some people just use `FIXME 1232`
     let issue_regex = regex::Regex::new(r"[1-9][0-9]{2,}").unwrap();
     let fixme_regex = regex::Regex::new(r"(FIXME|HACK)\(([^\)]+)\)").unwrap();
-    let doc: DOMTree<String> = html!(
-        <html>
-            <head>
-                <title>"FIXMEs in the rustc source"</title>
-                <style>
-                "table, th, td {
-                    border: 1px solid black;
-                }"
-                </style>
-            </head>
-            <body>
-                <table>
-                <tr><th>"Description"</th><th>"Source"</th></tr>
-                { lines.iter().map(|(text, entries)| {
-                    let mut links = linkify::LinkFinder::new();
-                    let mut last = 0;
-                    let mut clean_text = Vec::new();
-                    let bold_names = |clean_text: &mut Vec<_>, text: &str| {
-                        if let Some(capture) = fixme_regex.captures(text) {
-                            let found = capture.get(2).unwrap();
-                            clean_text.push(html!(<span>{text!(&text[..found.start()])}</span>));
-                            clean_text.push(html!(<span><strong>{text!(found.as_str())}</strong></span>));
-                            clean_text.push(html!(<span>{text!(&text[found.end()..])}</span>));
-                        } else {
-                            clean_text.push(html!(<span>{text!(text)}</span>));
-                        }
-                    };
-                    let issue_links = |clean_text: &mut Vec<_>, text| {
+    let doc: maud::Markup = html!(
+        html {
+            head {
+                title {
+                    "FIXMEs in the rustc source"
+                }
+                style {
+                    "table, th, td {
+                        border: 1px solid black;
+                    }"
+                }
+                script {
+                    "
+                    // Copied Verbatim from https://stackoverflow.com/a/49041392.
+                    const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+    
+                    const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+                        v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+                        )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+    
+                    // do the work...
+                    document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+                        const table = th.closest('table');
+                        Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+                            .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+                            .forEach(tr => table.appendChild(tr) );
+                    })));
+                    "
+                }
+            }
+            body {
+                table {
+                    tr { th { "Description" } th { "Source" } }
+                    (into_markup(lines.iter().map(|(text, entries)| {
+                        let links = linkify::LinkFinder::new();
                         let mut last = 0;
-                        for found in issue_regex.find_iter(text) {
-                            if found.start() != last {
-                                bold_names(clean_text, &text[last..found.start()]);
+                        let mut clean_text = Vec::new();
+                        let bold_names = |clean_text: &mut Vec<_>, text: &str| {
+                            if let Some(capture) = fixme_regex.captures(text) {
+                                let found = capture.get(2).unwrap();
+                                clean_text.push(html!(span {(&text[..found.start()])}));
+                                clean_text.push(html!(span { strong { (found.as_str()) } }));
+                                clean_text.push(html!(span { (&text[found.end()..]) }));
+                            } else {
+                                clean_text.push(html!(span { (text) }));
                             }
-                            last = found.end();
-                            clean_text.push(html!(<span><a href= { format!("https://github.com/rust-lang/rust/issues/{}", found.as_str())}>{ text!(found.as_str()) }</a></span>));
+                        };
+                        let issue_links = |clean_text: &mut Vec<_>, text| {
+                            let mut last = 0;
+                            for found in issue_regex.find_iter(text) {
+                                if found.start() != last {
+                                    bold_names(clean_text, &text[last..found.start()]);
+                                }
+                                last = found.end();
+                                clean_text.push(html!(span { a href=(format!("https://github.com/rust-lang/rust/issues/{}", found.as_str())) { (found.as_str()) } }));
+                            }
+                            if last != text.len() {
+                                bold_names(clean_text, &text[last..]);
+                            }
+                        };
+                        for link in links.links(text) {
+                            // fill in intermediate text
+                            if link.start() != last {
+                                issue_links(&mut clean_text, &text[last..link.start()]);
+                            }
+                            last = link.end();
+                            let link_text = link.as_str().trim_start_matches("https://").trim_start_matches("github.com/");
+                            clean_text.push(html!( span { a href=(link.as_str()) { (link_text) } } ));
                         }
                         if last != text.len() {
-                            bold_names(clean_text, &text[last..]);
+                            issue_links(&mut clean_text, &text[last..]);
                         }
-                    };
-                    for link in links.links(text) {
-                        // fill in intermediate text
-                        if link.start() != last {
-                            issue_links(&mut clean_text, &text[last..link.start()]);
-                        }
-                        last = link.end();
-                        let link_text = text!(link.as_str().trim_start_matches("https://").trim_start_matches("github.com/"));
-                        clean_text.push(html!(<span><a href={link.as_str()}>{ link_text }</a></span>));
-                    }
-                    if last != text.len() {
-                        issue_links(&mut clean_text, &text[last..]);
-                    }
-                    html!(
-                        <tr>
-                        <td>
-                            { clean_text }
-                        </td>
-                        <td>
-                            { entries.iter().map(|(file, line)| html!(
-                                <a href={ format!("https://github.com/rust-lang/rust/blob/master/{}#L{}", file.display(), line) }>
-                                {
-                                    let mut file: PathBuf = file.iter().skip(1).collect();
-                                    file.set_extension("");
-                                    let file = file.display().to_string();
-                                    let file = file.trim_start_matches("lib");
-                                    text!("{}", file)
-                                }<br/>
-                                </a>
-                            ))}
-                        </td>
-                        </tr>
-                    )
-                }) }
-                </table>
-            </body>
-        </html>
+                        html!(
+                            tr {
+                                td {
+                                    (into_markup(clean_text))
+                                }
+                                td {
+                                    (into_markup(entries.iter().map(|(file, line)| html!(
+                                        a href=(format!("https://github.com/rust-lang/rust/blob/master/{}#L{}", file.display(), line)) {
+                                            ({
+                                                let mut file: PathBuf = file.iter().skip(1).collect();
+                                                file.set_extension("");
+                                                let file = file.display().to_string();
+                                                let file = file.trim_start_matches("lib");
+                                                file.to_owned()
+                                            })
+                                        }
+                                    ))))
+                                }
+                            }
+                        )
+                    })))
+                }
+            }
+        }
     );
-    let doc_str = doc.to_string();
+    let doc_str = doc.into_string();
 
     let _ = std::fs::create_dir("build");
     let _ = std::fs::remove_file("build/index.html");
