@@ -40,7 +40,7 @@ fn main() -> std::io::Result<()> {
             dedup
                 .entry(line)
                 .or_default()
-                .push((filename.clone(), line_num));
+                .push((filename.clone(), line_num + 1));
         }
     }
     let mut lines: Vec<_> = dedup.into_iter().collect();
