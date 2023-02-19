@@ -5,12 +5,12 @@ use std::io::Read;
 use std::io::Write;
 use std::path::PathBuf;
 
-use maud::{Markup, PreEscaped, Render, html};
+use maud::{html, Markup, PreEscaped, Render};
 
 fn into_markup<T>(x: T) -> Markup
 where
     T: IntoIterator,
-    T::Item: Render
+    T::Item: Render,
 {
     let mut s = String::new();
     for item in x {
@@ -49,6 +49,7 @@ fn main() -> std::io::Result<()> {
     // We can't depend on a starting `#` either, because some people just use `FIXME 1232`
     let issue_regex = regex::Regex::new(r"[1-9][0-9]{2,}").unwrap();
     let fixme_regex = regex::Regex::new(r"(FIXME|HACK)\(([^\)]+)\)").unwrap();
+
     let doc: maud::Markup = html!(
         html {
             head {
