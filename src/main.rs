@@ -22,7 +22,7 @@ where
 fn main() -> std::io::Result<()> {
     const TRIM_TOKENS: &[char] = &['/', '*', ' ', ':', '-', '.', '^', ','];
     let mut dedup: HashMap<_, Vec<_>> = HashMap::new();
-    let re = regex::Regex::new(r"[^\n]*(FIXME|HACK)[^\n]*").unwrap();
+
     for file in glob::glob("rust/**/*.rs").expect("glob pattern failed") {
         let filename = file.unwrap();
         let mut text = String::new();
@@ -30,16 +30,12 @@ fn main() -> std::io::Result<()> {
             .unwrap()
             .read_to_string(&mut text)
             .unwrap();
-        for cap in re.find_iter(&text) {
-            let line_num = text
-                .lines()
-                .enumerate()
-                .find(|(_, s)| unsafe { s.as_ptr().offset_from(text.as_ptr())} > cap.start() as isize)
-                .unwrap_or_else(|| panic!("can't find {:?}", cap))
-                .0;
+        for (line_num, line) in text.lines().enumerate() {
+            if !line.contains("FIXME") && !line.contains("HACK") {
+                continue;
+            }
 
-            let line = cap.as_str().trim_matches(TRIM_TOKENS).to_owned();
-            // trim the leading `rust` part from the path
+            let line = line.trim_matches(TRIM_TOKENS).to_owned();
             let filename: PathBuf = filename.iter().skip(1).collect();
             dedup
                 .entry(line)
@@ -65,6 +61,7 @@ fn main() -> std::io::Result<()> {
                     }"
                 }
                 script {
+                    (PreEscaped(
                     "
                     // Copied Verbatim from https://stackoverflow.com/a/49041392.
                     const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
@@ -80,7 +77,7 @@ fn main() -> std::io::Result<()> {
                             .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
                             .forEach(tr => table.appendChild(tr) );
                     })));
-                    "
+                    "))
                 }
             }
             body {
