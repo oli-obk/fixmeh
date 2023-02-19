@@ -1,4 +1,4 @@
-#![recursion_limit = "4096"]
+#![forbid(unsafe_code)]
 
 use std::collections::HashMap;
 use std::io::Read;
