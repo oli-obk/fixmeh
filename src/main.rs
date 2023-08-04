@@ -49,9 +49,6 @@ fn main() -> std::io::Result<()> {
     }
     let mut lines: Vec<_> = dedup.into_iter().collect();
     lines.sort_by(|(a, _), (b, _)| a.cmp(b));
-    // sorry, ignoring single and double digit issues
-    // We can't depend on a starting `#` either, because some people just use `FIXME 1232`
-    let issue_regex = regex::Regex::new(r"[1-9][0-9]{2,}").unwrap();
     let fixme_regex = regex::Regex::new(r"(FIXME|HACK)\(([^\)]+)\)").unwrap();
 
     let doc: maud::Markup = html!(
@@ -85,12 +82,13 @@ fn main() -> std::io::Result<()> {
                         };
                         let issue_links = |clean_text: &mut Vec<_>, text| {
                             let mut last = 0;
-                            for found in issue_regex.find_iter(text) {
-                                if found.start() != last {
-                                    bold_names(clean_text, &text[last..found.start()]);
+                            for found in issue_references(text) {
+                                if found.start != last {
+                                    bold_names(clean_text, &text[last..found.start]);
                                 }
-                                last = found.end();
-                                clean_text.push(html!(span { a href=(format!("https://github.com/rust-lang/rust/issues/{}", found.as_str())) { (found.as_str()) } }));
+                                last = found.end;
+                                let found_str = &text[found.start..found.end];
+                                clean_text.push(html!(span { a href=(format!("https://github.com/rust-lang/rust/issues/{}", found_str)) { (found_str) } }));
                             }
                             if last != text.len() {
                                 bold_names(clean_text, &text[last..]);
@@ -159,4 +157,96 @@ fn main() -> std::io::Result<()> {
     let _ = std::fs::remove_file("build/index.html");
     let mut outfile = std::fs::File::create("build/index.html")?;
     outfile.write_all(doc_str.as_bytes())
+}
+
+#[derive(Debug, PartialEq, Eq)]
+struct IssueReference {
+    start: usize,
+    end: usize,
+}
+
+/// Given a string, return a list of start and end indices to what looks like
+/// issue references.
+fn issue_references(text: &str) -> Vec<IssueReference> {
+    // sorry, ignoring single and double digit issues
+    // We can't depend on a starting `#` either, because some people just use `FIXME 1232`
+    let issue_regex = regex::Regex::new(r"\b([1-9][0-9]{2,})([^%a-zA-Z]|$)").unwrap();
+
+    issue_regex
+        .captures_iter(text)
+        .map(|m| IssueReference {
+            start: m.get(1).unwrap().start(),
+            end: m.get(1).unwrap().end(),
+        })
+        .collect()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_issue_references() {
+        let cases = [
+            (
+                "FIXME(jackh726): This is a hack. It's somewhat like",
+                vec![]
+            ),
+            (
+                "// FIXME: not 100% sure why these crop up, but return an empty tree to avoid a panic",
+                vec![]
+            ),
+            (
+                "// FIXME(mu001999) E0599 maybe not suitable here because it is for types",
+                vec![],
+            ),
+            (
+                "FIXME implement 128bit atomics",
+                vec![],
+            ),
+            (
+                "FIXME: #7698, false positive of the internal lints",
+                vec![IssueReference {start: 8, end: 12}],
+            ),
+            (
+                "FIXME: 91167",
+                vec![IssueReference {start:7, end: 12}]
+            ),
+            (
+                "ignore-android: FIXME (#20004)",
+                vec![IssueReference {start:24, end: 29}]
+            ),
+            (
+                "ignore-android: FIXME(#10381)",
+                vec![IssueReference {start:23, end: 28}]
+            ),
+            (
+                "frame_pointer: FramePointer::Always, // FIXME 43575: should be MayOmit",
+                vec![IssueReference {start:46, end: 51}]
+            ),
+            (
+                "FIXME: Report diagnostic on 404",
+                vec![IssueReference {start:28, end: 31}] // TODO: Fix false positive
+            ),
+            (
+                "FIXME: [0..200; 2];",
+                vec![IssueReference {start: 11, end: 14}], // TODO: Fix false positive
+            ),
+            (
+                "FIXME(bytecodealliance/wasmtime#6104) use bitcast instead of store to get from i64x2 to i128",
+                vec![IssueReference {start: 32, end: 36}], // TODO: Link to the correct repo
+            ),
+            (
+                "#[allow(dead_code)] // FIXME(81658): should be used + lint reinstated after #83171 relands",
+                vec![IssueReference {start:29, end: 34}, IssueReference {start:77, end: 82}]
+            ),
+        ];
+
+        for case in cases {
+            let text = case.0;
+            let expected = case.1;
+
+            assert_eq!(issue_references(text), *expected, "{text}");
+        }
+    }
 }
