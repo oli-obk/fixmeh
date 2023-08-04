@@ -26,10 +26,14 @@ fn main() -> std::io::Result<()> {
     for file in glob::glob("rust/**/*.rs").expect("glob pattern failed") {
         let filename = file.unwrap();
         let mut text = String::new();
-        std::fs::File::open(&filename)
+        if let Err(e) = std::fs::File::open(&filename)
             .unwrap()
             .read_to_string(&mut text)
-            .unwrap();
+        {
+            eprintln!("skipping {:?}: {}", filename, e);
+            continue;
+        }
+
         for (line_num, line) in text.lines().enumerate() {
             if !line.contains("FIXME") && !line.contains("HACK") {
                 continue;
