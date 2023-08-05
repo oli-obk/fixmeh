@@ -25,6 +25,8 @@ jobs:
     - name: Run tests
       run: cargo test --verbose
     - name: Generate
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: cargo run
     - name: GitHub Pages
       if: github.event_name != 'pull_request'
