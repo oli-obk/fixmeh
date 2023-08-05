@@ -27,6 +27,7 @@ jobs:
     - name: Generate
       run: cargo run
     - name: GitHub Pages
+      if: github.event_name != 'pull_request'
       uses: crazy-max/ghaction-github-pages@v2.5.0
       with:
         # Build directory to deploy
