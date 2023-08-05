@@ -66,6 +66,13 @@ fn main() -> std::io::Result<()> {
                 }
             }
             body {
+                p {
+                    "This page lists all FIXMEs and HACKs in the rustc source code. It is updated daily. "
+                    "GitHub repo: " a href=("https://github.com/oli-obk/fixmeh") { ("https://github.com/oli-obk/fixmeh") }
+                }
+                p {
+                    "Note that you can sort on issue state by clicking on the \"Issue states\" header."
+                }
                 table {
                     tr { th { "Description" } th { "Source" } th { "Issue states" } }
                     (into_markup(lines.iter().map(|(text, entries)| {
